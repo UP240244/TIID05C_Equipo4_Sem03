@@ -163,47 +163,66 @@ Como punto de partida para poder estimar el alcance del proyecto, se definen las
 \chapter*{Priorizar las 8 características de ISO/IEC 25010.}
 \addcontentsline{toc}{section}{Priorizar las 8 características de ISO/IEC 25010}
 
+Para poder analizar la calidad del sistema se usa el modelo ya conocido definido en ISO/IEC 25010:2023, que organiza la calidad de software en ocho caracteristicas de producto y en cinco de calidad de uso \cite{iso25010_2023}. A cada una de estas caracteristicas se le asigna una prioridad según que tan relevante es para que lo que el Outline hace y tambien para quien la usa, de esta manera apoyándose también en el enfoque de evaluación de calidad descrito por \cite{pressman2020}. 
 
 
-\subsection*{1. Adecuación funcional}
-\addcontentsline{toc}{subsection}{1. Adecuación funcional}
+\subsection*{1. Adecuación funcional -- Alta}
+\addcontentsline{toc}{subsection}{1. Adecuación funcional -- Alta}
 
+Si Outline no permite crear documentos correctamente, si la búsqueda no encuentra lo que debería o si los permisos no funcionan como se configuraron, el sistema simplemente no sirve para nada. Es la caracteristica más básica y no hay forma de compensarla en nada más, \cite{pressman2020} lo plantean de una forma muy directa, la cual es que sin la completitud funcional y el hablar de otras caracteristicas de calidad no tienen mucho sentido.
  
-\subsection*{2. Eficiencia de desempeño}
-\addcontentsline{toc}{subsection}{2. Eficiencia de desempeño}
+\subsection*{2. Eficiencia de desempeño -- Alta}
+\addcontentsline{toc}{subsection}{2. Eficiencia de desempeño -- Alta}
 
+Uno de los puntos que Outline presume frente a Confluence es que es muy rápido. Si dos personas están editando el mismo documento y los cambios tardan varios segundos en aparecer, la experiencia se vuelve muy frustrante y también muy inutilizable. Lo mismo pasa con la búsqueda, si se tarda demasiado, la gente lo que hace es que deja de utilizarla y vuelve a buscar archivos manualmente. \cite{pressman2020} señalan que el comportamiento temporal es uno de los aspectos del desempeño más críticos en aplicaciones web que dependen de la colaboración.
 
-\subsection*{3. Usabilidad}
-\addcontentsline{toc}{subsection}{3. Usabilidad}
+\subsection*{3. Usabilidad -- Alta}
+\addcontentsline{toc}{subsection}{3. Usabilidad -- Alta}
 
+La razón por la que mucha gente prefiere Outline por encima de Confluence es porque no se necesita un tutorial para empezar a usarlo. Si la interfaz es complicada o poco intuitiva, los usuarios simplemente no van a documentar, y una wiki que nadie usa no le sirve a nadie. \cite{pressman2020} mencionan que la usabilidad muchas veces define si un sistema realmente se adopta o termina siendo ignorado, aunque funcione perfectamente.
 
+\subsection*{4. Fiablidad -- Alta}
+\addcontentsline{toc}{subsection}{4. Fiablidad -- Alta}
 
-\subsection*{4. Fiablidad}
-\addcontentsline{toc}{subsection}{4. Fiablidad}
+La wiki guarda cosas importantes cómo responder ante un incidente en producción, asi cómo hacer el onboarding de alguien nuevo, decisiones de arquitectura que costó tiempo tomar, entre otros. Si el sistema se cae justo cuando alguien lo necesita o peor, si se pierden datos, el daño puede ser considerable. Por eso la disponibilidad y la capacidad de recuperarse ante fallos son aspectos que no se pueden descuidar \cite{outline2025}.
 
+\subsection*{5. Seguridad -- Alta}
+\addcontentsline{toc}{subsection}{5. Seguridad -- Alta}
 
-\subsection*{5. Seguridad}
-\addcontentsline{toc}{subsection}{5. Seguridad}
+Outline guarda información que en muchos casos no debería ver nadie de fuera, por ejemplo documentación de infraestructura, procesos internos y datos de clientes. Si los controles de acceso fallan o alguien sin permisos puede ver colecciones que no le corresponden, hay un problema muy serio. \cite{pressman2020} insisten en que la seguridad debe pensarse desde el diseño, no agregarse al final como parche.
 
+\subsection*{6. Compatibilidad -- Media }
+\addcontentsline{toc}{subsection}{6. Compatibilidad -- Media }
 
-\subsection*{6. Compatibilidad}
-\addcontentsline{toc}{subsection}{6. Compatibilidad}
+Para que Outline funcione bien en una empresa, necesita conectarse con el sistema de autenticación que ya usan (Google, Slack, Azure AD) y con el almacenamiento de archivos disponible. Esto es importante pero una vez que está configurado no suele ser algo que requiera atención constante, el propio diseño de Outline ya contempla estas integraciones de forma bastante directa \cite{outline2025}.
 
+\subsection*{7. Mantenibilidad -- Media }
+\addcontentsline{toc}{subsection}{7. Mantenibilidad -- Media }
 
-\subsection*{7. Mantenibilidad}
-\addcontentsline{toc}{subsection}{7. Mantenibilidad}
+Dado que Outline es self-hosted, alguien del equipo tiene que encargarse de actualizarlo, aplicar parches de seguridad y eventualmente modificar algo. El hecho de que esté hecho con TypeScript y Docker hace que esto no sea tan complicado pero tampoco es algo que el usuario final note directamente. \cite{pressman2020} señalan que una buena mantenibilidad reduce bastante el costo de tener el sistema funcionando a largo plazo.
 
+\subsection*{8. Portabilidad -- Baja }
+\addcontentsline{toc}{subsection}{8. Portabilidad -- Baja}
 
-\subsection*{8. Portabilidad}
-\addcontentsline{toc}{subsection}{8. Portabilidad}
-
+Docker ya resuelve esto casi por completo, Outline puede instalarse en AWS, en un VPS propio, en un servidor físico o en cualquier otro entorno sin cambiar una línea de código \cite{outline2025}. 
+No tiene mucho sentido invertir esfuerzo en algo que ya está bien resuelto.
 
 \newpage
 
 \section*{Calidad en Uso -- Las 2 Características más Relevantes}
 \addcontentsline{toc}{section}{Calidad en Uso -- Las 2 Características más Relevantes}
 
+\cite{iso25010_2023} define 5 características de calidad en uso: Efectividad, Eficiencia, Satisfacción, Ausencia de riesgo y Cobertura de contexto. Para Outline, las dos más relevantes son:
 
+\subsection*{Efectividad}
+\addcontentsline{toc}{subsection}{Efectividad}
+
+Lo que importa aquí es si los usuarios pueden hacer lo que necesitan sin tropiezos: encontrar un documento, editarlo, compartirlo. En una wiki corporativa esto no es trivial, si alguien no encuentra el procedimiento adecuado durante un incidente, o un empleado nuevo no logra completar su onboarding porque la documentación es un caos, hay consecuencias reales. Pressman \& Maxim \cite{pressman2020} plantean que la efectividad se evalúa observando si los usuarios completan tareas representativas sin tener que pedir ayuda o abandonarlas a la mitad. 
+
+\subsection*{Satisfacción}
+\addcontentsline{toc}{subsection}{Satisfacción}
+
+Una wiki interna solo funciona si la gente quiere usarla. No hay forma de obligar a un equipo a documentar si encuentra la herramienta incómoda o lenta, simplemente van a seguir mandando cosas por Slack o guardando archivos en Drive. La satisfacción es en cierto modo el indicador más honesto del éxito del sistema: si el equipo está contento con la herramienta, la documentación se mantiene viva y actualizada, sino, se convierte en un cementerio de páginas desactualizadas. Esto puede medirse con encuestas internas o revisando cuántos usuarios siguen activos mes a mes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -221,7 +240,26 @@ Como punto de partida para poder estimar el alcance del proyecto, se definen las
     \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
 \end{itemize}
 
+ \subsection*{2. Latencia P95 de búsqueda full-text}
+\addcontentsline{toc}{subsection}{2. Latencia P95 de búsqueda full-text }
+\begin{itemize}
+    \item \textbf{Característica ISO 24010: } Eficiencia de Desempeño -- Comportamiento temporal \cite{iso25010_2023}
+    \item \textbf{Fórmula: }P95\_búsqueda = percentil 95 del tiempo de respuesta del endpoint POST /api/documents.search, en ms
+    \item \textbf{Umbral: } El 95\% de las búsquedas deben responder en menos de 800 ms con hasta 50 usuarios conectados al mismo tiempo
+    \item \textbf{Herramienta: } Prometheus recolectando métricas del servidor Node.js, visualizadas en Grafana; pruebas de carga periódicas con k6 
+    \cite{grafana2024}%(Grafana Labs, 2024; k6, 2024)
+    \item \textbf{Referencia de la métrica: }\cite{iso25023_2016}
+\end{itemize}
  
+\subsection*{3. Tasa de fallos en autenticación OAuth}
+\addcontentsline{toc}{subsection}{3. Tasa de fallos en autenticación OAuth }
+\begin{itemize}
+    \item \textbf{Característica ISO 24010: } Seguridad -- Autenticidad \cite{iso25010_2023}
+    \item \textbf{Fórmula: }Tasa\_error\_auth (\%) = [N\_errores\_sistema\_auth / N\_intentos\_auth\_total] × 100 (no se cuentan los intentos fallidos por contraseña incorrecta del usuario)
+    \item \textbf{Umbral: }Menos del 0.5\% de los intentos de inicio de sesión deben fallar por un problema del sistema
+    \item \textbf{Herramienta: }Prometheus recolectando métricas del servidor Node.js, visualizadas en Grafana; pruebas de carga periódicas con k6 \cite{grafana2024}
+    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
+\end{itemize}
 
 
 
