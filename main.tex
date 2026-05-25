@@ -235,13 +235,8 @@ Una wiki interna solo funciona si la gente quiere usarla. No hay forma de obliga
 \subsection*{KPIs medibles según ISO/IEC 25023}
 \label{sec:kpis}
 
-% ─────────────────────────────────────────────────────────────────────────────
-% Sección 4.3 — KPIs medibles según ISO/IEC 25023
-% Proyecto: Wiki interna estilo Notion (TypeScript + React + PostgreSQL)
-% ─────────────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────────────────────────
 
-\subsection{KPIs medibles según ISO/IEC 25023}
-\label{sec:kpis}
 
 La norma ISO/IEC 25023:2016 define los \textit{Quality Measure Elements} (QME)
 que operacionalizan cada característica de ISO/IEC 25010. A partir del análisis
@@ -383,13 +378,24 @@ normalizada, umbral numérico y herramienta de medición.
   presentan regresiones frecuentes en producción. El umbral de 2~bugs/KLOC es
   conservador y medible automáticamente con SonarQube en el pipeline CI/CD.
 
+  \item \textbf{KPI~6 — Cobertura de pruebas unitarias ($\geq 80\,\%$).}
+  Una wiki interna con editor de bloques en React y lógica de negocio en
+  TypeScript presenta múltiples rutas de código susceptibles a regresiones al
+  añadir nuevas funcionalidades. Mantener una cobertura mínima del 80~\% con
+  Vitest e Istanbul garantiza que los módulos críticos (autenticación, guardado
+  automático de páginas y control de versiones) estén protegidos por pruebas
+  antes de cada merge a \texttt{main}, en línea con las prácticas de
+  mantenibilidad descritas en Pressman \& Maxim (2020, cap.~21)
+  \citep{pressman2020software}.
+
 \end{itemize}
 
 \paragraph{Relación con los parciales siguientes.}
 Los KPIs 1, 2 y 5 serán la base del plan de pruebas de rendimiento y
 fiabilidad del Parcial~2. Los KPIs 3 y 4 alimentarán el informe técnico final
 del Parcial~3, cerrando el ciclo de aseguramiento de calidad establecido en
-el Plan SQA (sección~\ref{sec:sqa}).
+el Plan SQA (sección~\ref{sec:sqa})..
+\newpage
 
 \chapter*{Plan SQA preliminar según IEEE 730}
 \addcontentsline{toc}{section}{Plan SQA preliminar según IEEE 730}
