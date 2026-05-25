@@ -232,36 +232,164 @@ Una wiki interna solo funciona si la gente quiere usarla. No hay forma de obliga
 \chapter*{6 KPIs medibles basados en ISO/IEC 25023}
 \addcontentsline{toc}{section}{6 KPIs medibles basados en ISO/IEC 25023}
 
-\subsection*{1. Diponibilidad del servicio}
-\addcontentsline{toc}{subsection}{1. Diponibilidad del servicio}
+\subsection*{KPIs medibles según ISO/IEC 25023}
+\label{sec:kpis}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% Sección 4.3 — KPIs medibles según ISO/IEC 25023
+% Proyecto: Wiki interna estilo Notion (TypeScript + React + PostgreSQL)
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{KPIs medibles según ISO/IEC 25023}
+\label{sec:kpis}
+
+La norma ISO/IEC 25023:2016 define los \textit{Quality Measure Elements} (QME)
+que operacionalizan cada característica de ISO/IEC 25010. A partir del análisis
+de prioridades de la sección anterior, el equipo definió \textbf{seis KPIs}:
+cinco asociados a características de prioridad \textit{Alta} y uno a una
+característica de prioridad \textit{Media}. Cada KPI incluye nombre, fórmula
+normalizada, umbral numérico y herramienta de medición.
+
+\begin{table}[H]
+  \centering
+  \caption{KPIs ISO/IEC 25023 para la Wiki interna estilo Notion}
+  \label{tab:kpis}
+  \renewcommand{\arraystretch}{1.35}
+  \small
+  \begin{tabular}{%
+      >{\raggedright\arraybackslash}p{0.22\textwidth}
+      >{\raggedright\arraybackslash}p{0.22\textwidth}
+      >{\centering\arraybackslash}p{0.06\textwidth}
+      >{\raggedright\arraybackslash}p{0.22\textwidth}
+      >{\centering\arraybackslash}p{0.10\textwidth}
+      >{\raggedright\arraybackslash}p{0.13\textwidth}
+    }
+    \hline
+    \textbf{KPI (nombre)} &
+    \textbf{Característica ISO 25010} &
+    \textbf{Prior.} &
+    \textbf{Fórmula ISO 25023} &
+    \textbf{Umbral} &
+    \textbf{Herramienta} \\
+    \hline
+
+    % KPI 1
+    \textbf{Disponibilidad del servicio}
+    \newline (\textit{Availability}) &
+    Fiabilidad \textrightarrow{} Disponibilidad &
+    Alta &
+    $X = \dfrac{T_o}{T_o + T_d}$
+    \newline $T_o$: tiempo operativo (h)
+    \newline $T_d$: tiempo caído (h) &
+    $\geq 99.5\,\%$ &
+    Grafana + Uptime~Kuma \\
+    \hline
+
+    % KPI 2
+    \textbf{Tiempo de respuesta de búsqueda}
+    \newline (\textit{Mean Response Time}) &
+    Eficiencia de desempeño \textrightarrow{} Comportamiento temporal &
+    Alta &
+    $X = \dfrac{1}{n}\sum_{i=1}^{n} t_i$
+    \newline $t_i$: latencia por petición (ms) &
+    $\leq 300\,\text{ms}$ (p95) &
+    Lighthouse / k6 \\
+    \hline
+
+    % KPI 3
+    \textbf{Completitud funcional}
+    \newline (\textit{Functional Completeness}) &
+    Adecuación funcional \textrightarrow{} Completitud &
+    Alta &
+    $X = 1 - \dfrac{A}{B}$
+    \newline $A$: historias no implementadas
+    \newline $B$: historias totales &
+    $\geq 0.90$ &
+    Jira / GitHub Issues \\
+    \hline
+
+    % KPI 4
+    \textbf{Tasa de éxito en tareas clave}
+    \newline (\textit{Task Completion Rate}) &
+    Calidad en Uso \textrightarrow{} Eficacia &
+    Alta &
+    $X = \dfrac{N_c}{N_t}$
+    \newline $N_c$: tareas completadas sin error
+    \newline $N_t$: tareas totales en prueba &
+    $\geq 0.85$ &
+    Maze / sesión moderada \\
+    \hline
+
+    % KPI 5
+    \textbf{Densidad de defectos}
+    \newline (\textit{Defect Density}) &
+    Fiabilidad \textrightarrow{} Madurez &
+    Alta &
+    $X = \dfrac{N_{\text{def}}}{\text{KLOC}}$
+    \newline $N_{\text{def}}$: bugs abiertos en producción &
+    $\leq 2\,\text{bugs/KLOC}$ &
+    SonarQube \\
+    \hline
+
+    % KPI 6
+    \textbf{Cobertura de pruebas unitarias}
+    \newline (\textit{Test Coverage}) &
+    Mantenibilidad \textrightarrow{} Testeabilidad &
+    Media &
+    $X = \dfrac{L_p}{L_t}$
+    \newline $L_p$: líneas cubiertas por tests
+    \newline $L_t$: líneas ejecutables totales &
+    $\geq 80\,\%$ &
+    Vitest + Istanbul \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\paragraph{Justificación de los KPIs de prioridad Alta.}
+
 \begin{itemize}
-    \item \textbf{Característica ISO 24010: }Fiabilidad -- Disponibilidad \cite{iso25010_2023}
-    \item \textbf{Fórmula: } Disponibilidad (\%) = [T\_operativo / (T\_operativo + T\_inactivo)] × 100
-    \item \textbf{Umbral: } \geq 99.5\% mensual, lo que equivale a no más de 3.6 horas de caída acumulada en todo el mes
-    \item \textbf{Herramienta: } Uptime Kuma instalado en el mismo servidor, revisando el endpoint /api/health.check cada 60 segundos y enviando alertas al canal de Slack del equipo \cite{grafana2024} 
-    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
+
+  \item \textbf{KPI~1 — Disponibilidad ($\geq 99.5\,\%$).}
+  Una wiki interna es una herramienta de trabajo diario; una caída de más de
+  3.6~horas al mes impacta directamente la productividad del equipo. El umbral
+  del 99.5~\% corresponde a menos de 3.65~h de caída mensual y es alcanzable
+  con un despliegue en contenedores con reinicio automático
+  \citep{galin2018software}.
+
+  \item \textbf{KPI~2 — Tiempo de respuesta de búsqueda ($\leq 300$~ms, p95).}
+  La búsqueda de contenido es la operación más frecuente en una wiki estilo
+  Notion. Un tiempo superior a 300~ms es percibido como latencia perceptible
+  por el usuario promedio \citep{pressman2020software}. La métrica se mide con
+  k6 en escenario de carga de 50 usuarios concurrentes sobre PostgreSQL con
+  índice \texttt{GIN}.
+
+  \item \textbf{KPI~3 — Completitud funcional ($\geq 90\,\%$).}
+  Aplicando la fórmula de la norma ($X = 1 - A/B$), un proyecto con 30
+  historias de usuario debe tener como máximo 3 sin implementar al momento de
+  cada release. Esto garantiza que el núcleo funcional (editor de bloques,
+  jerarquía de páginas, control de versiones) esté operativo
+  \citep{isoiec25010}.
+
+  \item \textbf{KPI~4 — Tasa de éxito en tareas clave ($\geq 85\,\%$).}
+  Se evalúan tres tareas representativas: (a)~crear una página con subpágina
+  anidada, (b)~enlazar dos documentos mediante mención \texttt{@}, y
+  (c)~exportar una página a PDF. Un umbral de 85~\% con usuarios no entrenados
+  es coherente con el objetivo de usabilidad para equipos de trabajo internos
+  \citep{ieeestd730}.
+
+  \item \textbf{KPI~5 — Densidad de defectos ($\leq 2$~bugs/KLOC).}
+  Basado en el benchmark de productos SaaS de madurez intermedia reportado por
+  Galin (2018, cap.~22): proyectos con densidad superior a 5~bugs/KLOC
+  presentan regresiones frecuentes en producción. El umbral de 2~bugs/KLOC es
+  conservador y medible automáticamente con SonarQube en el pipeline CI/CD.
+
 \end{itemize}
 
- \subsection*{2. Latencia P95 de búsqueda full-text}
-\addcontentsline{toc}{subsection}{2. Latencia P95 de búsqueda full-text }
-\begin{itemize}
-    \item \textbf{Característica ISO 24010: } Eficiencia de Desempeño -- Comportamiento temporal \cite{iso25010_2023}
-    \item \textbf{Fórmula: }P95\_búsqueda = percentil 95 del tiempo de respuesta del endpoint POST /api/documents.search, en ms
-    \item \textbf{Umbral: } El 95\% de las búsquedas deben responder en menos de 800 ms con hasta 50 usuarios conectados al mismo tiempo
-    \item \textbf{Herramienta: } Prometheus recolectando métricas del servidor Node.js, visualizadas en Grafana; pruebas de carga periódicas con k6 
-    \cite{grafana2024}%(Grafana Labs, 2024; k6, 2024)
-    \item \textbf{Referencia de la métrica: }\cite{iso25023_2016}
-\end{itemize}
- 
-\subsection*{3. Tasa de fallos en autenticación OAuth}
-\addcontentsline{toc}{subsection}{3. Tasa de fallos en autenticación OAuth }
-\begin{itemize}
-    \item \textbf{Característica ISO 24010: } Seguridad -- Autenticidad \cite{iso25010_2023}
-    \item \textbf{Fórmula: }Tasa\_error\_auth (\%) = [N\_errores\_sistema\_auth / N\_intentos\_auth\_total] × 100 (no se cuentan los intentos fallidos por contraseña incorrecta del usuario)
-    \item \textbf{Umbral: }Menos del 0.5\% de los intentos de inicio de sesión deben fallar por un problema del sistema
-    \item \textbf{Herramienta: }Prometheus recolectando métricas del servidor Node.js, visualizadas en Grafana; pruebas de carga periódicas con k6 \cite{grafana2024}
-    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
-\end{itemize}
+\paragraph{Relación con los parciales siguientes.}
+Los KPIs 1, 2 y 5 serán la base del plan de pruebas de rendimiento y
+fiabilidad del Parcial~2. Los KPIs 3 y 4 alimentarán el informe técnico final
+del Parcial~3, cerrando el ciclo de aseguramiento de calidad establecido en
+el Plan SQA (sección~\ref{sec:sqa}).
 
 \chapter*{Plan SQA preliminar según IEEE 730}
 \addcontentsline{toc}{section}{Plan SQA preliminar según IEEE 730}
