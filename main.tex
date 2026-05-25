@@ -64,12 +64,14 @@
 \newpage
 \chapter*{Introducción}
 \addcontentsline{toc}{section}{Introducción}
-\textbf{Contexto:} 
-\textbf{Justificación:} 
 
-\textbf{Objetivo del documento:}
+\textbf{Contexto:} La calidad del software no es un atributo que se evalúa al final del desarrollo, sino un conjunto de propiedades que deben definirse, medirse y controlarse a lo largo de todo el ciclo de vida del sistema. En proyectos reales donde equipos pequeños trabajan sobre bases de código complejas, contar con estándares formales y herramientas de medición es una necesidad práctica que determina si el software puede mantenerse, escalar y operar de forma confiable.
 
-\textbf{Estructura del documento:} 
+\textbf{Justificación:} Outline es una aplicación de código abierto con más de 70,000 líneas de código TypeScript, colaboración en tiempo real y requisitos críticos de seguridad y disponibilidad. Aplicarle formalmente los estándares ISO/IEC 25010, ISO/IEC 25023, IEEE 730 y los modelos de madurez disponibles permite al equipo pasar de una evaluación subjetiva del sistema a una evaluación estructurada.
+
+\textbf{Objetivo del documento:} Aplicar formalmente los estándares de calidad de software al proyecto integrador Outline, priorizando sus características de calidad según ISO/IEC 25010, definiendo KPIs medibles basados en ISO/IEC 25023, redactando un Plan SQA preliminar siguiendo IEEE 730-2014, recomendando el modelo de madurez más adecuado para el contexto del equipo e identificando los principales riesgos de calidad del sistema.
+
+\textbf{Estructura del documento:} El trabajo se organiza en las siguientes secciones: primero se describe técnicamente el proyecto integrador y su contexto de uso, después se priorizan las ocho características de calidad de ISO/IEC 25010 con su justificación, luego se definen seis KPIs medibles basados en ISO/IEC 25023, luego se presenta el Plan SQA según IEEE 730-2014 y posteriormente se recomienda y justifica el modelo de madurez más apropiado; se identifican los riesgos de calidad mediante una matriz formal y finalmente se documentan los aportes individuales de cada integrante del equipo.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -374,6 +376,20 @@ R6 & Variables de entorno distintas entre integrantes producen resultados no rep
 \chapter*{Conclusión}
 \addcontentsline{toc}{section}{Conclusión}
 
+Este trabajo demostró que aplicar estándares formales de calidad a un proyecto real no es un ejercicio teórico sino una actividad que produce decisiones técnicas concretas y defendibles. Analizar Outline a través del modelo ISO/IEC 25010 obligó al equipo a ir más allá de preguntarse si el sistema funciona, y cuestionarse qué tan fiable es, qué tan seguro es, qué tan fácil es mantenerlo y qué tan bien lo perciben sus usuarios reales.
+
+La priorización de las ocho características dejó en claro que no todas tienen el mismo peso para este sistema en particular. La adecuación funcional, la fiabilidad, la seguridad y la usabilidad son críticas porque Outline guarda información sensible de equipos de trabajo y cualquier fallo en esas dimensiones tiene consecuencias reales e inmediatas. La portabilidad, en cambio, ya está resuelta por Docker y no requiere inversión adicional.
+
+Los seis KPIs definidos con base en ISO/IEC 25023 convierten esas prioridades en valores medibles con herramientas concretas. Esto significa que al final del cuatrimestre el equipo podrá demostrar con datos si el sistema cumple o no los umbrales establecidos, en lugar de depender de apreciaciones subjetivas.
+
+El Plan SQA basado en IEEE 730-2014 formalizó los roles, las reglas auditables, la estrategia de pruebas en tres niveles y los SLA de resolución de defectos. Tener esas reglas definidas desde el inicio del proyecto reduce la ambigüedad y establece criterios claros de aceptación para cada entregable.
+
+La elección de MoProSoft como modelo de madurez responde directamente al contexto del equipo: cuatro integrantes, desarrollo en México y recursos limitados. Adoptar CMMI hubiera sido técnicamente correcto pero operativamente inviable para el tamaño y duración del proyecto.
+
+Finalmente, la matriz de riesgos identificó seis amenazas concretas para la calidad de Outline, cada una con su característica ISO/IEC 25010 afectada y su estrategia de mitigación. Esto sienta las bases para el trabajo de pruebas del Parcial 2, donde cada riesgo identificado aquí deberá traducirse en casos de prueba específicos.
+
+
+
 \chapter*{Aportes individuales}
 \addcontentsline{toc}{section}{Aportes individuales}
 
@@ -385,12 +401,25 @@ Como líder del equipo y responsable de las subsecciones de KPIs 4, 5 y 6, el Pl
 \section*{José de Jesús Hernández Gutiérrez}
 \addcontentsline{toc}{section}{José de Jesús Hernández Gutiérrez}
 
+
+
 \section*{Ángel Iván García Salazar}
 \addcontentsline{toc}{section}{Ángel Iván García Salazar}
+Me encargué de redactar la introducción y la conclusión del documento, 
+estableciendo el contexto del proyecto, la justificación de la aplicación 
+de estándares formales y la estructura general del trabajo. Desarrollé 
+también la sección completa de priorización de las ocho características 
+de calidad de ISO/IEC 25010 aplicadas al sistema Outline, justificando 
+el nivel de prioridad asignado a cada una según el contexto de uso del 
+sistema y el perfil de sus usuarios. Adicionalmente, definí los KPIs de 
+disponibilidad del servicio y latencia P95 de búsqueda full-text, 
+incluyendo su fórmula de medición, umbral numérico aceptable y la 
+herramienta propuesta para su recolección, ambos basados en 
+ISO/IEC 25023.
+
 
 \section*{Alison Tamara Romo Rodríguez}
 \addcontentsline{toc}{section}{Alison Tamara Romo Rodríguez}
-
 Asumí el rol de coordinadora técnica para la gestión inicial del entregable, encargándome de la inicialización, maquetación y modularización de la estructura base del documento principal en latex bajo la nueva interfaz de Overleaf, así como de la configuración, inicialización y vinculación del repositorio Git institucional en GitHub para habilitar el control de versiones colaborativo del equipo. En el bloque de desarrollo de ingeniería, redacté la sección de \textit{Descripción del proyecto integrador y contexto de su uso}, detallando la ficha técnica, usuarios objetivo y la justificación del stack tecnológico del sistema Outline. Asimismo, diseñé y definí formalmente uno de los indicadores clave de rendimiento (KPI) de la sección de métricas cuantitativas, fundamentado en el estándar ISO/IEC 25023 para evaluar la calidad del producto.
 
 \printbibliography
