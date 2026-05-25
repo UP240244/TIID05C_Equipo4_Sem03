@@ -264,70 +264,16 @@ Una wiki interna solo funciona si la gente quiere usarla. No hay forma de obliga
 \chapter*{Plan SQA preliminar según IEEE 730}
 \addcontentsline{toc}{section}{Plan SQA preliminar según IEEE 730}
 
+El Plan de Aseguramiento de Calidad del Software (SQAP) se redacta siguiendo el estándar \textit{IEEE Std 730-2014}, que define los procesos necesarios para garantizar que el producto cumple los requisitos de calidad establecidos \cite{pressman2020}.
+
 \section*{Purpose (alcance del plan)}
 \addcontentsline{toc}{section}{Purpose (alcance del plan)}
+
+Este plan cubre las actividades de aseguramiento de calidad del Equipo 04 durante el cuatrimestre (mayo--agosto 2026) sobre el repositorio de Outline v0.74.x: análisis estático con SonarQube, pruebas funcionales con Playwright, medición de KPIs y seguimiento de defectos.
 
 \section*{Management (roles del equipo)}
 \addcontentsline{toc}{section}{Management (roles del equipo)}
 
-\section*{Standarts, practices, metrics (las reglas auditables)}
-\addcontentsline{toc}{section}{Standarts, practices, metrics (las reglas auditables)}
-
-\section*{Test (estrategia de pruebas)}
-\addcontentsline{toc}{section}{Test (estrategia de pruebas)}
-
-\section*{Problem reporting (SLA por severidad)}
-\addcontentsline{toc}{section}{Problem reporting (SLA por severidad)}
-
-\chapter*{Recomendación de modelo de madurez}
-\addcontentsline{toc}{section}{Recomendación de modelo de madurez}
-
-\chapter*{Matriz de riesgos de calidad}
-\addcontentsline{toc}{section}{Matriz de riesgos de calidad}
-
-\subsection*{4. Tasa de defectos detectados en revisión de código}
-\addcontentsline{toc}{subsection}{4. Tasa de defectos detectados en revisión de código}
-\begin{itemize}
-    \item \textbf{Característica ISO 25010: } Mantenibilidad -- Analizabilidad \cite{iso25010_2023}
-    \item \textbf{Fórmula: } Densidad\_defectos = [N\_defectos\_encontrados / KLOC\_analizadas] donde KLOC = miles de líneas de código
-    \item \textbf{Umbral: } $\leq$ 1 defecto por cada 1,000 líneas de código analizadas con SonarQube en los módulos de autenticación, documentos y colecciones
-    \item \textbf{Herramienta: } SonarQube Community Edition sobre el repositorio de Outline v0.74.x \cite{pressman2020}
-    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
-\end{itemize}
-
-\subsection*{5. Cobertura de pruebas automatizadas}
-\addcontentsline{toc}{subsection}{5. Cobertura de pruebas automatizadas}
-\begin{itemize}
-    \item \textbf{Característica ISO 25010: } Fiabilidad -- Madurez \cite{iso25010_2023}
-    \item \textbf{Fórmula: } Cobertura (\%) = [N\_líneas\_ejecutadas\_en\_prueba / N\_líneas\_totales\_del\_módulo] $\times$ 100
-    \item \textbf{Umbral: } $\geq$ 70\% de cobertura sobre los cinco módulos evaluados (autenticación, documentos, colecciones, búsqueda y colaboración en tiempo real)
-    \item \textbf{Herramienta: } Playwright para pruebas funcionales de extremo a extremo; reporte de cobertura generado con Istanbul/c8 \cite{k6_2024}
-    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
-\end{itemize}
-
-\subsection*{6. Tiempo medio de recuperación ante fallos (MTTR)}
-\addcontentsline{toc}{subsection}{6. Tiempo medio de recuperación ante fallos (MTTR)}
-\begin{itemize}
-    \item \textbf{Característica ISO 25010: } Fiabilidad -- Recuperabilidad \cite{iso25010_2023}
-    \item \textbf{Fórmula: } MTTR = [Suma de tiempos de recuperación / N\_incidentes\_registrados], expresado en minutos
-    \item \textbf{Umbral: } $\leq$ 30 minutos promedio por incidente durante el periodo de evaluación del cuatrimestre
-    \item \textbf{Herramienta: } Uptime Kuma para detección automática de caídas; registro manual de incidentes en el repositorio privado del equipo \cite{grafana2024}
-    \item \textbf{Referencia de la métrica: } \cite{iso25023_2016}
-\end{itemize}
-
-\newpage
-\chapter*{Desarrollo}
-\addcontentsline{toc}{section}{Desarrollo}
-
-\section*{Plan de Aseguramiento de Calidad del Software (SQA) según IEEE 730-2014}
-\addcontentsline{toc}{subsection}{Plan SQA según IEEE 730-2014}
-
-El Plan de Aseguramiento de Calidad del Software (SQAP) se redacta siguiendo el estándar \textit{IEEE Std 730-2014}, que define los procesos necesarios para garantizar que el producto cumple los requisitos de calidad establecidos \cite{pressman2020}.
-
-\subsection*{§1 — Propósito y Alcance}
-Este plan cubre las actividades de aseguramiento de calidad del Equipo 04 durante el cuatrimestre (mayo--agosto 2026) sobre el repositorio de Outline v0.74.x: análisis estático con SonarQube, pruebas funcionales con Playwright, medición de KPIs y seguimiento de defectos.
-
-\subsection*{§3 — Roles y Responsabilidades}
 \begin{table}[h]
 \centering
 \begin{tabular}{|p{3.5cm}|p{3cm}|p{7cm}|}
@@ -346,7 +292,9 @@ Documentador & José de J. Hernández & Redacta informes de calidad y mantiene e
 \caption{Roles y responsabilidades del equipo en el SQAP}
 \end{table}
 
-\subsection*{§5 — Estándares y Reglas Auditables}
+\section*{Standarts, practices, metrics (las reglas auditables)}
+\addcontentsline{toc}{section}{Standarts, practices, metrics (las reglas auditables)}
+
 \begin{enumerate}
     \item Todo el código TypeScript debe cumplir las reglas ESLint del repositorio oficial de Outline.
     \item Cobertura de pruebas unitarias $\geq$ 70\% sobre los módulos evaluados.
@@ -356,10 +304,14 @@ Documentador & José de J. Hernández & Redacta informes de calidad y mantiene e
     \item Cada caso de prueba debe referenciar al menos un KPI de la sección anterior \cite{pressman2020}.
 \end{enumerate}
 
-\subsection*{§7 — Estrategia de Pruebas}
+\section*{Test (estrategia de pruebas)}
+\addcontentsline{toc}{section}{Test (estrategia de pruebas)}
+
 La estrategia se organiza en tres niveles. Primero, pruebas estáticas en las semanas 2--4 mediante análisis con SonarQube sobre los cinco módulos definidos, midiendo complejidad ciclomática, duplicación y vulnerabilidades OWASP Top 10. Segundo, pruebas funcionales de caja negra en las semanas 5--9 con Playwright, cubriendo los flujos de autenticación, colaboración en tiempo real y gestión de permisos. Tercero, pruebas de rendimiento en las semanas 10--12 con k6 simulando 50 usuarios concurrentes, con umbral de aceptación $p_{95} \leq 500$ ms para lecturas y $p_{95} \leq 1{,}000$ ms para escrituras \cite{k6_2024}.
 
-\subsection*{§8 — Clasificación de Defectos y SLA}
+\section*{Problem reporting (SLA por severidad)}
+\addcontentsline{toc}{section}{Problem reporting (SLA por severidad)}
+
 \begin{table}[h]
 \centering
 \begin{tabular}{|p{2cm}|p{5.5cm}|p{1.8cm}|p{3.5cm}|}
@@ -378,9 +330,8 @@ Baja (S4) & Problema cosmético o de redacción de UI & Fin del parcial & Docume
 \caption{SLA de resolución de defectos por severidad}
 \end{table}
 
-\newpage
-\section*{Recomendación de Modelo de Madurez}
-\addcontentsline{toc}{subsection}{Recomendación de Modelo de Madurez}
+\chapter*{Recomendación de modelo de madurez}
+\addcontentsline{toc}{section}{Recomendación de modelo de madurez}
 
 Los tres modelos candidatos son CMMI for Development v2.0, MoProSoft (NMX-I-059-NYCE-2011) y la familia ISO/IEC 33000. Se recomienda aplicar \textbf{MoProSoft} por las siguientes razones \cite{pressman2020}:
 
@@ -392,9 +343,8 @@ Los tres modelos candidatos son CMMI for Development v2.0, MoProSoft (NMX-I-059-
     \item \textbf{Descarte de ISO/IEC 33000:} Es un marco de evaluación, no de mejora. Mide la capacidad de los procesos pero no prescribe cómo mejorarlos, que es exactamente lo que el equipo necesita.
 \end{enumerate}
 
-\newpage
-\section*{Matriz de Riesgos de Calidad}
-\addcontentsline{toc}{subsection}{Matriz de Riesgos de Calidad}
+\chapter*{Matriz de riesgos de calidad}
+\addcontentsline{toc}{section}{Matriz de riesgos de calidad}
 
 Se identificaron seis riesgos de calidad específicos del proyecto Outline. La probabilidad e impacto se clasifican como B (Bajo), M (Medio) y A (Alto) \cite{pressman2020}.
 
@@ -420,22 +370,7 @@ R6 & Variables de entorno distintas entre integrantes producen resultados no rep
 \caption{Matriz de riesgos de calidad del proyecto Outline}
 \end{table}
 
-\newpage
-\chapter*{Aportes Individuales}
-\addcontentsline{toc}{section}{Aportes Individuales}
 
-\subsection*{Ángel Iván García Salazar — UP240514}
-[Aporte de Ángel]
-
-\subsection*{José de Jesús Hernández Gutiérrez — UP240259}
-[Aporte de Pepe]
-
-\subsection*{Fabiola Guadalupe Palomino Badillo — UP240513}
-Como líder del equipo y responsable de las subsecciones de KPIs 4, 5 y 6, el Plan SQA, el modelo de madurez y la matriz de riesgos, me encargué de definir los tres KPIs restantes basados en ISO/IEC 25023, redactar el Plan de Aseguramiento de Calidad siguiendo IEEE 730-2014 con roles, reglas auditables, estrategia de pruebas en tres niveles y SLA por severidad de defectos. Elaboré el análisis comparativo de los modelos CMMI, MoProSoft e ISO/IEC 33000, justificando la selección de MoProSoft para el contexto del equipo. Finalmente, diseñé la matriz de riesgos con seis riesgos específicos del proyecto Outline, incluyendo la característica ISO/IEC 25010 afectada y la estrategia de mitigación concreta para cada uno \cite{pressman2020, iso25010_2023}.
-
-\subsection*{Alison Tamara Romo Rodríguez — UP240244}
-[Aporte de Alison]
-\newpage
 \chapter*{Conclusión}
 \addcontentsline{toc}{section}{Conclusión}
 
@@ -444,6 +379,8 @@ Como líder del equipo y responsable de las subsecciones de KPIs 4, 5 y 6, el Pl
 
 \section*{Fabiola Guadalupe Palomino Badillo}
 \addcontentsline{toc}{section}{Fabiola Guadalupe Palomino Badillo}
+
+Como líder del equipo y responsable de las subsecciones de KPIs 4, 5 y 6, el Plan SQA, el modelo de madurez y la matriz de riesgos, me encargué de redactar el Plan de Aseguramiento de Calidad siguiendo IEEE 730-2014 con roles, reglas auditables, estrategia de pruebas en tres niveles y SLA por severidad de defectos. Elaboré el análisis comparativo de los modelos CMMI, MoProSoft e ISO/IEC 33000, justificando la selección de MoProSoft para el contexto del equipo. Finalmente, diseñé la matriz de riesgos con seis riesgos específicos del proyecto Outline, incluyendo la característica ISO/IEC 25010 afectada y la estrategia de mitigación concreta para cada uno \cite{pressman2020, iso25010_2023}.
 
 \section*{José de Jesús Hernández Gutiérrez}
 \addcontentsline{toc}{section}{José de Jesús Hernández Gutiérrez}
